@@ -1,0 +1,55 @@
+﻿@model Authentication.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+
+
+
+<main aria-labelledby="title">
+    <h2 class="products-page-title" id="title">@ViewBag.Title</h2>
+
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "needs-validation", role = "form", novalidate = "true" }))
+    {
+        @Html.AntiForgeryToken()
+        <h4>Create a new account</h4>
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="mb-3 row">
+            @Html.LabelFor(m => m.Email, new { @class = "col-sm-2 col-form-label" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", required = "true" })
+                <div class="invalid-feedback">
+                    Please provide a valid email.
+                </div>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            @Html.LabelFor(m => m.Password, new { @class = "col-sm-2 col-form-label" })
+            <div class="col-sm-10">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", required = "true" })
+                <div class="invalid-feedback">
+                    Please provide a password.
+                </div>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-sm-2 col-form-label" })
+            <div class="col-sm-10">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", required = "true" })
+                <div class="invalid-feedback">
+                    Please confirm your password.
+                </div>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <div class="offset-sm-2 col-sm-10">
+                <button type="submit" class="login-register-button btn btn-dark">Register</button>
+            </div>
+        </div>
+    }
+</main>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
